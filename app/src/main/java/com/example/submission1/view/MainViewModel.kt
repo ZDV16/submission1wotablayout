@@ -14,8 +14,8 @@ import retrofit2.Response
 class MainViewModel : ViewModel() {
     var URL = "ZDV"
 
-    private val _itemsitem = MutableLiveData<ArrayList<GithubResponseItem>>()
-    val itemsitem: LiveData<ArrayList<GithubResponseItem>> = _itemsitem
+    private val _itemsitem = MutableLiveData<List<GithubResponseItem>>()
+    val itemsitem: LiveData<List<GithubResponseItem>> = _itemsitem
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
