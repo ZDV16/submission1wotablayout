@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.GithubResponseItem
-import com.example.submission1.MainViewModel
+import com.example.submission1.api.DetailResponse
 
 import com.example.submission1.databinding.FragmentFollowBinding
 
@@ -18,7 +17,7 @@ import com.example.submission1.databinding.FragmentFollowBinding
 class FollowFragment : Fragment() {
     private lateinit var binding: FragmentFollowBinding
     private lateinit var detailViewModel: DetailViewModel
-    val viewModel by viewModels<DetailViewModel>()
+
     companion object {
         const val ARG_POSITION = "position"
         const val ARG_USERNAME = ""
@@ -62,20 +61,22 @@ class FollowFragment : Fragment() {
            //     showLoadingUser(false)
             }
         }
-    }
-
     private fun showLoadingUser(isLoading: Boolean){
         if (isLoading) {
-            bind.loadingFollow.visibility = View.VISIBLE
+            binding.progressBar2.visibility = View.VISIBLE
         } else {
-            binding.loadingFollow.visibility = View.GONE
+            binding.progressBar2.visibility = View.GONE
+        }
+    }
+    private fun setFollowData(listUser : List<DetailResponse>){
+        binding.apply {
+            binding.rvList.layoutManager = LinearLayoutManager(requireActivity())
+            val adapter = UserAdapter(listUser)
+            binding.rvList.adapter = adapter
         }
     }
 
-    private fun setFollowData(listUser : List<GithubResponseItem>){
-        binding.apply {
-            binding.rv.layoutManager = LinearLayoutManager(requireActivity())
-            val adapter = UserAdapter(listUser)
-            binding.rvFollow.adapter = adapter
-        }
+
+
+
 }
