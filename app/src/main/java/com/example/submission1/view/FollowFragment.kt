@@ -68,11 +68,11 @@ class FollowFragment : Fragment() {
             binding.progressBar2.visibility = View.GONE
         }
     }
-    private fun setFollowData(listUser : List<DetailResponse>){
+    private fun setFollowData(listUser : List<GithubResponseItem>){
         binding.apply {
             binding.rvList.layoutManager = LinearLayoutManager(requireActivity())
-            val adapter = UserAdapter(listUser)
-            binding.rvList.adapter = adapter
+           // val adapter = UserAdapter(listUser)
+         //   binding.rvList.adapter = adapter
         }
     }
 
