@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.databinding.ActivityMainBinding
 import android.widget.SearchView
 import com.example.submission1.GithubResponseItem
-import com.example.submission1.view.MainViewModel
+import com.example.submission1.MainViewModel
 import com.example.submission1.view.UserAdapter
 
 class MainActivity : AppCompatActivity() {

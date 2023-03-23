@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.submission1.GithubResponseItem
 import com.example.submission1.api.ApiConfig
 import com.example.submission1.api.DetailResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class DetailViewModel : ViewModel() {
@@ -15,6 +17,12 @@ class DetailViewModel : ViewModel() {
 
     private val _userSelected = MutableLiveData<DetailResponse>()
     val userSelected: LiveData<DetailResponse> = _userSelected
+
+    private val _follower = MutableLiveData<List<GithubResponseItem>>()
+    val follower: LiveData<List<GithubResponseItem>> = _follower
+
+    private val _following = MutableLiveData<List<GithubResponseItem>>()
+    val following: LiveData<List<GithubResponseItem>> = _following
 
     companion object{
         private const val TAG = "DetailViewModel"
@@ -42,5 +50,27 @@ class DetailViewModel : ViewModel() {
             }
         })
     }
+    fun getFollower(query: String = "") {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getDetailFollower(query)
+        client.enqueue(object : Callback<ArrayList<GithubResponseItem>> {
+            override fun onResponse(
+                call: Call<ArrayList<GithubResponseItem>>,
+                response: Response<ArrayList<GithubResponseItem>>,
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _follower.value = response.body()
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}222")
+                }
+            }
+            override fun onFailure(call: Call<ArrayList<GithubResponseItem>>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
 
 }
