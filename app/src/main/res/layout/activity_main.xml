@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050505"
+    android:background="#121111"
     tools:context=".activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_listUser"
-        android:layout_width="410dp"
-        android:layout_height="625dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/search" />
 
     <SearchView
         android:id="@+id/search"
-        android:layout_width="388dp"
+        android:layout_width="0dp"
         android:layout_height="58dp"
-        android:background="@android:color/white"
+        android:background="#292828"
         android:icon="@drawable/ic_search_24"
         android:queryHint="Search Here"
         android:title="@string/search"

@@ -13,16 +13,10 @@ import retrofit2.Response
 
 class DetailViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _userSelected = MutableLiveData<DetailResponse>()
     val userSelected: LiveData<DetailResponse> = _userSelected
-
-    private val _follower = MutableLiveData<List<GithubResponseItem>>()
-    val follower: LiveData<List<GithubResponseItem>> = _follower
-
-    private val _following = MutableLiveData<List<GithubResponseItem>>()
-    val following: LiveData<List<GithubResponseItem>> = _following
+    
 
     companion object{
         private const val TAG = "DetailViewModel"
@@ -31,7 +25,7 @@ class DetailViewModel : ViewModel() {
     fun findDetail(username: String) {
         _isLoading.value = true
         val userSelect = ApiConfig.getApiService().getDetail(username)
-        userSelect.enqueue(object : retrofit2.Callback<DetailResponse> {
+        userSelect.enqueue(object : Callback<DetailResponse> {
             override fun onResponse(
                 call: Call<DetailResponse>,
                 response: Response<DetailResponse>

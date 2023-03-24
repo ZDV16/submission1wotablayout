@@ -1,5 +1,6 @@
 package com.example.submission1.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -17,7 +18,7 @@ class DetailUserActivity : AppCompatActivity() {
 
 
     companion object {
-        var itu :String =""
+        var user :String =""
         const val EXTRA_USER = "extra_username"
         @StringRes
         private val TAB_TITLES = intArrayOf(
@@ -36,6 +37,10 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        binding.btnBack.setOnClickListener {
+            val mainPage = Intent(this@DetailUserActivity, MainActivity::class.java)
+            startActivity(mainPage)
+        }
         val sectionPagerAdapter = SectionPagerAdapter(this)
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = sectionPagerAdapter
@@ -45,9 +50,9 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-        val username = intent.getStringExtra(EXTRA_USER)
 
-        itu = username.toString()
+        val username = intent.getStringExtra(EXTRA_USER)
+        user = username.toString()
         username?.let { viewModel.findDetail(it) }
         supportActionBar?.hide()
 
@@ -55,19 +60,18 @@ class DetailUserActivity : AppCompatActivity() {
             viewModel.findDetail(username)
             viewModel.userSelected.observe(this) {userDetail ->
                 if (userDetail != null) {
-                    binding.apply {
-                        tvNama.text = userDetail.name as CharSequence?
-                        tvUsername.text = userDetail.login
-                        tvFollowers.text = "${userDetail.followers} Followers"
-                        tvFollowing.text = "${userDetail.following} Following"
-                        Picasso.get()
-                        .load(userDetail.avatarUrl)
-                        .into(ivDetailUser)
+                binding.apply {
+                tvNama.text = userDetail.name as CharSequence?
+                tvUsername.text = userDetail.login
+                tvFollowers.text = "${userDetail.followers} Followers"
+                tvFollowing.text = "${userDetail.following} Following"
+                Picasso.get()
+                .load(userDetail.avatarUrl)
+                .into(ivDetailUser)
                     }
                 }
             }
         }
 
     }
-
 }

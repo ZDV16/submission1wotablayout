@@ -24,39 +24,40 @@ class FollowFragment : Fragment() {
 
 
     companion object {
-        const val ARG_POSITION = "position"
-        const val EXTRA_USER = "extra_username"
+    const val ARG_POSITION = "position"
+    const val EXTRA_USER = "extra_username"
 
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentFollowBinding.inflate(inflater, container, false)
-        return binding.root
+    binding = FragmentFollowBinding.inflate(inflater, container, false)
+    return binding.root
+    }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
+    super.onViewCreated(view, savedInstanceState)
+    viewModel.isLoading.observe(viewLifecycleOwner) {
+    showLoading(it)
+    }
+
+    arguments?.let {
             position = it.getInt(ARG_POSITION)
-            username = DetailUserActivity.itu
+            username = DetailUserActivity.user
             adapter = UserAdapter()
+    }
+    if (position == 1){
+       showRecyclerView()
+       observableViewModelFollower()
         }
-        if (position == 1){
-            binding.testUsern.text =""
-            showRecyclerView()
-            observableViewModelFollower()
-        } else {
-            binding.testUsern.text =""
-            showRecyclerViewFollowing()
-            observableViewModelFollowing()
+    else {
+        showRecyclerView()
+        observableViewModelFollowing()
         }
     }
+
     private fun showRecyclerView() {
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvList.setHasFixedSize(true)
@@ -66,27 +67,22 @@ class FollowFragment : Fragment() {
     private fun observableViewModelFollower(){
        viewModel.getFollowers(username)
        viewModel.followers.observe(viewLifecycleOwner){users ->
-            if(users != null){
-                adapter.setList(users)
+
+       if(users != null){
+       adapter.setList(users)
             }
-        }
-    }
-
-
-    private fun showRecyclerViewFollowing() {
-        binding.rvList.layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvList.setHasFixedSize(true)
-        binding.rvList.adapter = adapter
+       }
     }
 
     private fun observableViewModelFollowing(){
         viewModel.getFollowing(username)
         viewModel.following.observe(viewLifecycleOwner){users ->
-            if(users != null){
-                adapter.setList(users)
+        if(users != null){
+            adapter.setList(users)
             }
         }
     }
+
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.progressBar2.visibility = View.VISIBLE

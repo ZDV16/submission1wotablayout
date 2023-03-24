@@ -20,9 +20,6 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _userSelected = MutableLiveData<DetailResponse>()
-    val userSelected: LiveData<DetailResponse> = _userSelected
-
     companion object{
         private const val TAG = "MainViewModel"
     }
@@ -35,6 +32,7 @@ class MainViewModel : ViewModel() {
         _isLoading.value = true
         val user = ApiConfig.getApiService().getGithub(URL)
         user.enqueue(object : retrofit2.Callback<GithubResponse> {
+
             override fun onResponse(
                 call: Call<GithubResponse>,
                 response: Response<GithubResponse>

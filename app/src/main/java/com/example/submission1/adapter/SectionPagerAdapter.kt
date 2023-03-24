@@ -10,7 +10,6 @@ class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(ac
     override fun getItemCount(): Int {
         return 2
     }
-
     var username: String = ""
     override fun createFragment(position: Int): Fragment {
         val fragment = FollowFragment()

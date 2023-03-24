@@ -20,6 +20,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
         listUser.addAll(users)
         notifyDataSetChanged()
     }
+
     inner class ViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: GithubResponseItem) {
             binding.root.setOnClickListener{
