@@ -3,21 +3,32 @@ package com.example.submission1.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
+import androidx.viewpager2.widget.ViewPager2
+import com.example.submission1.R
 import com.example.submission1.databinding.ActivityDetailUserBinding
-import com.example.submission1.view.DetailViewModel
-import com.example.submission1.view.SectionPagerAdapter
-import com.example.submission1.view.UserAdapter
+import com.example.submission1.model.DetailViewModel
+import com.example.submission1.adapter.SectionPagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
 class DetailUserActivity : AppCompatActivity() {
 
-    private lateinit var adapter: SectionPagerAdapter
+
     companion object {
+        var itu :String =""
         const val EXTRA_USER = "extra_username"
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
     }
 
     private lateinit var binding: ActivityDetailUserBinding
-    val viewModel by viewModels<DetailViewModel>()
+    private val viewModel by viewModels<DetailViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +36,20 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val username = intent.getStringExtra(EXTRA_USER)
-        username?.let { viewModel.findDetail(it) }
+        val sectionPagerAdapter = SectionPagerAdapter(this)
+        val viewPager: ViewPager2 = binding.viewPager
+        viewPager.adapter = sectionPagerAdapter
+        val tabs: TabLayout = binding.tabs
+        TabLayoutMediator(tabs, viewPager){
+            tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
 
+        val username = intent.getStringExtra(EXTRA_USER)
+
+        itu = username.toString()
+        username?.let { viewModel.findDetail(it) }
+        supportActionBar?.hide()
 
         if (username != null) {
             viewModel.findDetail(username)
@@ -45,6 +67,7 @@ class DetailUserActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
 }

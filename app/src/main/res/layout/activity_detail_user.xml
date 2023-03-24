@@ -1,94 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="800dp"
+    android:background="#121111"
+    android:orientation="vertical"
     tools:context=".activity.DetailUserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="#121111"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="60dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#121111"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_detail_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091"
+        android:layout_gravity="center"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="Username"
+        android:textColor="#ECE2E2" />
 
     <TextView
         android:id="@+id/tv_nama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="11dp"
         android:text="Nama"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_detail_user"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textColor="#ECE2E2" />
 
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="79dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="16dp"
-        android:text="Username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nama" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
 
-    <TextView
-        android:id="@+id/tv_followers"
-        android:layout_width="124dp"
-        android:layout_height="26dp"
-        android:text="@string/tab1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username"
-        app:layout_constraintVertical_bias="0.054" />
+        <TextView
+            android:id="@+id/tv_following"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/tab2"
+            android:textColor="#ECE2E2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.185"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
 
-    <TextView
-        android:id="@+id/tv_following"
-        android:layout_width="109dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/tab2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/tv_followers"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/tab1"
+            android:textColor="#ECE2E2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.939"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginTop="52dp"
-        android:background="?attr/colorPrimary"
+        android:background="#292828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_following"
-        app:layout_constraintVertical_bias="0.103"
+        app:layout_constraintVertical_bias="0.0"
+        app:tabIndicatorColor="#504E4E"
         app:tabTextColor="@android:color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
-        android:layout_width="409dp"
-        android:layout_height="262dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="match_parent"
+        android:layout_height="338dp"
+        android:layout_marginTop="15dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

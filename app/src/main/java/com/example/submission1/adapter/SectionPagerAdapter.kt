@@ -1,9 +1,10 @@
-package com.example.submission1.view
+package com.example.submission1.adapter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.submission1.activity.FollowFragment
 
 class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
@@ -15,7 +16,7 @@ class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(ac
         val fragment = FollowFragment()
         fragment.arguments = Bundle().apply {
             putInt(FollowFragment.ARG_POSITION, position+1)
-            putString(FollowFragment.ARG_USERNAME, username)
+            putString(FollowFragment.EXTRA_USER, username)
         }
         return fragment
 

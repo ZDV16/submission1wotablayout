@@ -1,4 +1,4 @@
-package com.example.submission1.view
+package com.example.submission1.model
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -45,27 +45,6 @@ class DetailViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
-                _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
-            }
-        })
-    }
-    fun getFollower(query: String = "") {
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().getDetailFollower(query)
-        client.enqueue(object : Callback<ArrayList<GithubResponseItem>> {
-            override fun onResponse(
-                call: Call<ArrayList<GithubResponseItem>>,
-                response: Response<ArrayList<GithubResponseItem>>,
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    _follower.value = response.body()
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}222")
-                }
-            }
-            override fun onFailure(call: Call<ArrayList<GithubResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }

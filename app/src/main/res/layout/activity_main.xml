@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#050505"
     tools:context=".activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_listUser"
-        android:layout_width="395dp"
-        android:layout_height="710dp"
+        android:layout_width="410dp"
+        android:layout_height="625dp"
         android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,17 +23,17 @@
         android:id="@+id/search"
         android:layout_width="388dp"
         android:layout_height="58dp"
-        android:background="@color/white"
+        android:background="@android:color/white"
         android:icon="@drawable/ic_search_24"
-        android:title="@string/search"
         android:queryHint="Search Here"
+        android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.007"
         app:showAsAction="collapseActionView|always" />
 
     <ProgressBar

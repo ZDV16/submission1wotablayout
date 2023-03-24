@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.databinding.ActivityMainBinding
 import android.widget.SearchView
 import com.example.submission1.GithubResponseItem
-import com.example.submission1.MainViewModel
-import com.example.submission1.view.UserAdapter
+import com.example.submission1.model.MainViewModel
+import com.example.submission1.adapter.UserAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
              val detail = Intent(this@MainActivity, DetailUserActivity::class.java).putExtra(
                  DetailUserActivity.EXTRA_USER, data.login)
              startActivity(detail)
+
             }
 
         })
