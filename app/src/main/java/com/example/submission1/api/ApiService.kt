@@ -6,22 +6,22 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token ")
     @GET("search/users")
     fun getGithub(@Query("q") q: String
     ): Call<GithubResponse>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token ")
     @GET("users/{username}")
     fun getDetail(@Path("username") username: String
     ): Call<DetailResponse>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token ")
     @GET("users/{username}/followers")
     fun getDetailFollower(@Path("username") username: String
     ): Call<List<GithubResponseItem>>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token ")
     @GET("users/{username}/following")
     fun getDetailFollowing(@Path("username") username: String
     ): Call<List<GithubResponseItem>>

@@ -8,14 +8,15 @@ import com.example.submission1.databinding.ItemUserBinding
 import com.squareup.picasso.Picasso
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+
     private val listUser = ArrayList<GithubResponseItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setList(users:ArrayList<GithubResponseItem>){
+    fun setList(users: ArrayList<GithubResponseItem>) {
         listUser.clear()
         listUser.addAll(users)
         notifyDataSetChanged()
@@ -23,7 +24,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: GithubResponseItem) {
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(user)
             }
 
@@ -50,7 +51,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
         return listUser.size
     }
 
-    interface OnItemClickCallback{
+    interface OnItemClickCallback {
         fun onItemClicked(data: GithubResponseItem)
     }
 

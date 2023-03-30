@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.submission1.GithubResponse
 import com.example.submission1.GithubResponseItem
 import com.example.submission1.api.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class FollowViewModel : ViewModel() {
 
@@ -51,7 +49,7 @@ class FollowViewModel : ViewModel() {
         _isLoading.value = true
         val userFollowing = ApiConfig.getApiService().getDetailFollowing(username)
         userFollowing.enqueue(object : Callback<List<GithubResponseItem>> {
-
+            
             override fun onResponse(
                 call: Call<List<GithubResponseItem>>,
                 response: Response<List<GithubResponseItem>>

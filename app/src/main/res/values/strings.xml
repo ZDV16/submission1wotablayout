@@ -10,4 +10,7 @@
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
     <string name="data_kosong">Data Kosong!</string>
+    <string name="username">Username</string>
+    <string name="nama">Nama</string>
+    <string name="btnback">Button untuk back</string>
 </resources>

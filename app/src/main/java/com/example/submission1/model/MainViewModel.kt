@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.example.submission1.GithubResponse
 import com.example.submission1.GithubResponseItem
 import com.example.submission1.api.ApiConfig
-import com.example.submission1.api.DetailResponse
 import retrofit2.Call
 import retrofit2.Response
 
@@ -20,15 +19,15 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object{
+    companion object {
         private const val TAG = "MainViewModel"
     }
 
-    init{
+    init {
         findUser()
     }
 
-      fun findUser() {
+    fun findUser() {
         _isLoading.value = true
         val user = ApiConfig.getApiService().getGithub(URL)
         user.enqueue(object : retrofit2.Callback<GithubResponse> {
@@ -50,5 +49,5 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
-}
+    }
 }
