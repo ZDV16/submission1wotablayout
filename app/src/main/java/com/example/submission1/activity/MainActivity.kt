@@ -1,24 +1,38 @@
 package com.example.submission1.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.databinding.ActivityMainBinding
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.submission1.GithubResponseItem
 import com.example.submission1.model.MainViewModel
 import com.example.submission1.adapter.UserAdapter
+import com.example.submission1.setting.SettingPreferences
+import com.example.submission1.setting.SettingViewModel
+import com.example.submission1.setting.SettingViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: UserAdapter
     val viewModel by viewModels<MainViewModel>()
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +78,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(favPage)
         }
 
+        binding.btnSettings.setOnClickListener {
+            val settingPage = Intent(this@MainActivity, DarkModeActivity::class.java)
+            startActivity(settingPage)
+        }
+
+        getSetting()
         showRecyclerView()
         observableViewModel()
         supportActionBar?.hide()
+
     }
 
     private fun showRecyclerView() {
@@ -79,6 +100,19 @@ class MainActivity : AppCompatActivity() {
         viewModel.itemsitem.observe(this) { users ->
             if (users != null) {
                 adapter.setList(users)
+            }
+        }
+    }
+
+    private fun getSetting(){
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel =
+            ViewModelProvider(this, SettingViewModelFactory(pref))[SettingViewModel::class.java]
+        mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
     }

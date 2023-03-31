@@ -13,9 +13,10 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="Theme.Design" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="CustomImageButton" parent="Widget.AppCompat.ImageButton">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
+        <item name="background">@color/black</item>
     </style>
 </resources>
