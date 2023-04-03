@@ -1,6 +1,5 @@
 package com.example.submission1.api
 
-import com.example.submission1.GithubResponseItem
 import com.google.gson.annotations.SerializedName
 
 data class FollowersResponse(

@@ -2,9 +2,9 @@ package com.example.submission1.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.GithubResponseItem
 import com.example.submission1.adapter.UserAdapter

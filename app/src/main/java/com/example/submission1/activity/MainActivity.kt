@@ -5,24 +5,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.CompoundButton
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.submission1.databinding.ActivityMainBinding
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1.GithubResponseItem
-import com.example.submission1.model.MainViewModel
 import com.example.submission1.adapter.UserAdapter
+import com.example.submission1.databinding.ActivityMainBinding
+import com.example.submission1.model.MainViewModel
 import com.example.submission1.setting.SettingPreferences
 import com.example.submission1.setting.SettingViewModel
 import com.example.submission1.setting.SettingViewModelFactory
@@ -104,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSetting(){
+    private fun getSetting() {
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel =
             ViewModelProvider(this, SettingViewModelFactory(pref))[SettingViewModel::class.java]
